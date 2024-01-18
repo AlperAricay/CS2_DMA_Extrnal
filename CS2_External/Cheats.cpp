@@ -209,7 +209,7 @@ void Cheats::Run()
 	static std::chrono::time_point LastTimePoint = std::chrono::steady_clock::now();
 	auto CurTimePoint = std::chrono::steady_clock::now();
 
-	if (GetAsyncKeyState(VK_HOME)
+	if (ProcessMgr.GetKeyboard()->IsKeyDown(VK_HOME)
 		&& CurTimePoint - LastTimePoint >= std::chrono::milliseconds(150))
 	{
 		// Check key state per 150ms once to avoid loop.
@@ -391,7 +391,7 @@ void Cheats::Run()
 	if (MenuConfig::AntiFlashbang)
 		AntiFlashbang::Run(LocalEntityPlayer);
 
-	if (MenuConfig::AimBot && GetAsyncKeyState(AimControl::HotKey))
+	if (MenuConfig::AimBot && ProcessMgr.GetKeyboard()->IsKeyDown(AimControl::HotKey))
 	{
 		if (AimPos != Vec3(0, 0, 0))
 		{

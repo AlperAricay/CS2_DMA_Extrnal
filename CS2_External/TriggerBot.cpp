@@ -35,7 +35,7 @@ void TriggerBot::Run(const CEntity& LocalEntity)
 	auto CurTimePoint = std::chrono::steady_clock::now();
 	if (CurTimePoint - LastTimePoint >= std::chrono::milliseconds(TriggerDelay))
 	{
-		const bool isAlreadyShooting = GetAsyncKeyState(VK_LBUTTON) < 0;
+		const bool isAlreadyShooting = ProcessMgr.GetKeyboard()->IsKeyDown(VK_LBUTTON) < 0;
 		if (!isAlreadyShooting)
 		{
 			mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
