@@ -104,6 +104,8 @@ public:
 		//hProcess = OpenProcess(PROCESS_ALL_ACCESS | PROCESS_CREATE_THREAD, TRUE, ProcessID);
 		//_is_invalid(hProcess, FAILE_HPROCESS);
 
+		this->key = std::make_shared<c_keys>();
+
 		Attached = true;
 
 		return SUCCEED;
