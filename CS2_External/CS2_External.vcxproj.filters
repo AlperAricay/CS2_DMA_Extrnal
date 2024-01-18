@@ -34,6 +34,9 @@
     <Filter Include="Utils\ConfigSaver">
       <UniqueIdentifier>{aa25e002-e95d-4db7-a900-3cd9edf6338f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="nt">
+      <UniqueIdentifier>{bbc8940d-540e-4d3a-b703-6cdf3b80e22c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OS-ImGui\imgui\imconfig.h">
@@ -134,6 +137,16 @@
     <ClInclude Include="CheatsThread.h">
       <Filter>Cheats</Filter>
     </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>nt</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Registry.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -204,6 +217,12 @@
     </ClCompile>
     <ClCompile Include="CheatsThread.cpp">
       <Filter>Cheats</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

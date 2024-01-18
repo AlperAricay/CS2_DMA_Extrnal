@@ -60,6 +60,19 @@ int main()
 		}
 	}
 
+	if (!ProcessMgr.GetKeyboard()->InitKeyboard())
+	{
+		std::cout << "Failed to initialize keyboard hotkeys through kernel." << std::endl;
+		goto END;
+	}
+
+	//example keyboard usage.
+	std::cout << "Continuing once 'A' has been pressed." << std::endl;
+	while (!ProcessMgr.GetKeyboard()->IsKeyDown(0x41))
+	{
+		Sleep(100);
+	}
+
 	std::cout << "Runing..." << std::endl;
 	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)(UpdateMatrix), NULL, 0, 0);
 
@@ -76,19 +89,19 @@ int main()
 	{
 		//Gui.AttachAnotherWindow("Counter-Strike 2", "SDL_app", Cheats::Run);
 		char moduleIndox[2];
-		std::cout << "请选择模式: " << std::endl;
-		std::cout << "	[1]单机模式" << std::endl;
-		std::cout << "	[2]双机(Moonlight)模式" << std::endl;
-		std::cout << "	[3]融合器模式" << std::endl;
-		std::cout << "请输入序号: ";
+		std::cout << "Radar options: " << std::endl;
+		std::cout << "	[1]Virtual Machine" << std::endl;
+		std::cout << "	[2]Moonlight" << std::endl;
+		std::cout << "	[3]External" << std::endl;
+		std::cout << "Choose one: ";
 		std::cin.getline(moduleIndox, 2);
 		std::cout << std::atoi(moduleIndox) << std::endl;
 		if (std::atoi(moduleIndox) == 1) {
-			std::cout << "单机模式 " << std::endl;
+			std::cout << "Virtual Machine" << std::endl;
 			Gui.AttachAnotherWindow("Counter-Strike 2", "SDL_app", Cheats::Run);
 		}
 		if (std::atoi(moduleIndox) == 2) {
-			std::cout << "双机(Moonlight)模式" << std::endl;
+			std::cout << "Moonlight" << std::endl;
 			Gui.AttachAnotherWindow("Moonlight", "SDL_app", Cheats::Run);
 		}
 		if (std::atoi(moduleIndox) == 3) {

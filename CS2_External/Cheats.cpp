@@ -14,75 +14,75 @@ void Cheats::Menu()
 	}
 
 
-	ImGui::Begin(u8"菜单",nullptr,ImGuiWindowFlags_AlwaysAutoResize);
+	ImGui::Begin("Menu", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	{
-		ImGui::BeginTabBar(u8"透视");
+		ImGui::BeginTabBar("Cheat");
 		// esp menu
-		if (ImGui::BeginTabItem(u8"透视"))
+		if (ImGui::BeginTabItem("ESP"))
 		{
-			Gui.MyCheckBox(u8"显示方框", &MenuConfig::ShowBoxESP);
+			Gui.MyCheckBox("BoxESP", &MenuConfig::ShowBoxESP);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##方框颜色", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
 
-			ImGui::Combo(u8"方框类型", &MenuConfig::BoxType, u8"普通\0紧凑");
+			ImGui::Combo("BoxType", &MenuConfig::BoxType, "Normal\0Dynamic");
 
-			Gui.MyCheckBox(u8"骨骼透视", &MenuConfig::ShowBoneESP);
+			Gui.MyCheckBox("BoneESP", &MenuConfig::ShowBoneESP);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##骨骼颜色", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##BoneColor", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
 
-			Gui.MyCheckBox(u8"敌人视线", &MenuConfig::ShowEyeRay);
+			Gui.MyCheckBox("EyeRay", &MenuConfig::ShowEyeRay);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##敌人视线", reinterpret_cast<float*>(&MenuConfig::EyeRayColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##EyeRay", reinterpret_cast<float*>(&MenuConfig::EyeRayColor), ImGuiColorEditFlags_NoInputs);
 
-			Gui.MyCheckBox(u8"血条", &MenuConfig::ShowHealthBar);
-			ImGui::Combo(u8"血条样式", &MenuConfig::HealthBarType, u8"靠左\0置顶");
+			Gui.MyCheckBox("HealthBar", &MenuConfig::ShowHealthBar);
+			ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vetical\0Horizontal");
 
-			Gui.MyCheckBox(u8"显示武器", &MenuConfig::ShowWeaponESP);
-			Gui.MyCheckBox(u8"显示距离", &MenuConfig::ShowDistance);
-			Gui.MyCheckBox(u8"显示昵称", &MenuConfig::ShowPlayerName);
+			Gui.MyCheckBox("WeaponText", &MenuConfig::ShowWeaponESP);
+			Gui.MyCheckBox("Distance", &MenuConfig::ShowDistance);
+			Gui.MyCheckBox("PlayerName", &MenuConfig::ShowPlayerName);
 
-			Gui.MyCheckBox(u8"显示爆头线", &MenuConfig::ShowHeadShootLine);
+			Gui.MyCheckBox("HeadShootLine", &MenuConfig::ShowHeadShootLine);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##爆头线颜色", reinterpret_cast<float*>(&MenuConfig::HeadShootLineColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##HeadShootLineColor", reinterpret_cast<float*>(&MenuConfig::HeadShootLineColor), ImGuiColorEditFlags_NoInputs);
 
-			Gui.MyCheckBox(u8"显示视野范围", &MenuConfig::ShowFovLine);
+			Gui.MyCheckBox("FovLine", &MenuConfig::ShowFovLine);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##视野范围颜色", reinterpret_cast<float*>(&MenuConfig::FovLineColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##FovLineColor", reinterpret_cast<float*>(&MenuConfig::FovLineColor), ImGuiColorEditFlags_NoInputs);
 			float FovLineSizeMin = 20.f, FovLineSizeMax = 120.f;
-			Gui.SliderScalarEx1(u8"视野范围线条粗细", ImGuiDataType_Float, &MenuConfig::FovLineSize, &FovLineSizeMin, &FovLineSizeMax, "%.1f", ImGuiSliderFlags_None);
-		
-			Gui.MyCheckBox(u8"显示敌人连线", &MenuConfig::ShowLineToEnemy);
-			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##连线颜色", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
+			Gui.SliderScalarEx1("FovLineSize", ImGuiDataType_Float, &MenuConfig::FovLineSize, &FovLineSizeMin, &FovLineSizeMax, "%.1f", ImGuiSliderFlags_None);
 
-			Gui.MyCheckBox(u8"显示准星", &MenuConfig::ShowCrossHair);
+			Gui.MyCheckBox("LineToEnemy", &MenuConfig::ShowLineToEnemy);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##准星颜色", reinterpret_cast<float*>(&MenuConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##LineToEnemyColor", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
+
+			Gui.MyCheckBox("CrossHair", &MenuConfig::ShowCrossHair);
+			ImGui::SameLine();
+			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&MenuConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
 			float CrossHairSizeMin = 15, CrossHairSizeMax = 200;
-			Gui.SliderScalarEx1(u8"准星大小", ImGuiDataType_Float, &MenuConfig::CrossHairSize, &CrossHairSizeMin, &CrossHairSizeMax, "%.1f", ImGuiSliderFlags_None);
-		
+			Gui.SliderScalarEx1("CrossHairSize", ImGuiDataType_Float, &MenuConfig::CrossHairSize, &CrossHairSizeMin, &CrossHairSizeMax, "%.1f", ImGuiSliderFlags_None);
+
 			ImGui::EndTabItem();
 		}
 
 		// aimbot menu
-		if (ImGui::BeginTabItem(u8"自瞄 "))
+		if (ImGui::BeginTabItem("AimBot "))
 		{
-			Gui.MyCheckBox(u8"自瞄*", &MenuConfig::AimBot);
+			Gui.MyCheckBox("AimBot", &MenuConfig::AimBot);
 
-			if (ImGui::Combo(u8"热键", &MenuConfig::AimBotHotKey, "LBUTTON\0MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))// added LBUTTON
+			if (ImGui::Combo("AimKey", &MenuConfig::AimBotHotKey, "LBUTTON\0MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))// added LBUTTON
 			{
 				AimControl::SetHotKey(MenuConfig::AimBotHotKey);
 			}
 
 			float FovMin = 0.1f, FovMax = 89.f;
 			float SmoothMin = 0.f, SmoothMax = 0.9f;
-			Gui.SliderScalarEx1(u8"自瞄范围", ImGuiDataType_Float, &AimControl::AimFov, &FovMin, &FovMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.MyCheckBox(u8"显示自瞄范围", &MenuConfig::ShowAimFovRange);
+			Gui.SliderScalarEx1("AimFov", ImGuiDataType_Float, &AimControl::AimFov, &FovMin, &FovMax, "%.1f", ImGuiSliderFlags_None);
+			Gui.MyCheckBox("FovCircle", &MenuConfig::ShowAimFovRange);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##自瞄范围颜色", reinterpret_cast<float*>(&MenuConfig::AimFovRangeColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##FovCircleColor", reinterpret_cast<float*>(&MenuConfig::AimFovRangeColor), ImGuiColorEditFlags_NoInputs);
 
-			Gui.SliderScalarEx1(u8"瞄准延迟(越小越快)", ImGuiDataType_Float, &AimControl::Smooth, &SmoothMin, &SmoothMax, "%.1f", ImGuiSliderFlags_None);
-			if (ImGui::Combo(u8"瞄准位置", &MenuConfig::AimPosition, u8"头\0脖子\0胸"))
+			Gui.SliderScalarEx1("Smooth", ImGuiDataType_Float, &AimControl::Smooth, &SmoothMin, &SmoothMax, "%.1f", ImGuiSliderFlags_None);
+			if (ImGui::Combo("AimPos", &MenuConfig::AimPosition, "Head\0Neck\0Spine"))
 			{
 				switch (MenuConfig::AimPosition)
 				{
@@ -101,66 +101,68 @@ void Cheats::Menu()
 			}
 			int BulletMin = 1, BulletMax = 6;
 			float RecoilMin = 0.f, RecoilMax = 2.f;
-			//Gui.SliderScalarEx1("Start Bullet", ImGuiDataType_U32, &AimControl::RCSBullet, &BulletMin, &BulletMax, "%d", ImGuiSliderFlags_None);
-			//Gui.SliderScalarEx1("RCS Yaw", ImGuiDataType_Float, &AimControl::RCSScale.x, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
-			//Gui.SliderScalarEx1("RCS Pitch", ImGuiDataType_Float, &AimControl::RCSScale.y, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.MyCheckBox(u8"不瞄墙后敌人", &MenuConfig::VisibleCheck);
-		
+			Gui.SliderScalarEx1("Start Bullet", ImGuiDataType_U32, &AimControl::RCSBullet, &BulletMin, &BulletMax, "%d", ImGuiSliderFlags_None);
+			Gui.SliderScalarEx1("RCS Yaw", ImGuiDataType_Float, &AimControl::RCSScale.x, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
+			Gui.SliderScalarEx1("RCS Pitch", ImGuiDataType_Float, &AimControl::RCSScale.y, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
+			Gui.MyCheckBox("VisibleCheck", &MenuConfig::VisibleCheck);
+
 			ImGui::EndTabItem();
 		}
 
 		// Radar menu
-		if (ImGui::BeginTabItem(u8"雷达 "))
+		if (ImGui::BeginTabItem("Radar "))
 		{
-			Gui.MyCheckBox(u8"雷达", &MenuConfig::ShowRadar);
-			ImGui::Combo(u8"雷达图标", &MenuConfig::RadarType, u8"黑点\0箭头\0圆点加箭头");
+			Gui.MyCheckBox("Radar", &MenuConfig::ShowRadar);
+			ImGui::Combo("RadarType", &MenuConfig::RadarType, "Circle\0Arrow\0CircleWithArrow");
 
-			Gui.MyCheckBox(u8"显示中心线", &MenuConfig::ShowRadarCrossLine);
+			Gui.MyCheckBox("CrossLine", &MenuConfig::ShowRadarCrossLine);
 			ImGui::SameLine();
-			ImGui::ColorEdit4(u8"##中心线颜色", reinterpret_cast<float*>(&MenuConfig::RadarCrossLineColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::ColorEdit4("##CrossLineColor", reinterpret_cast<float*>(&MenuConfig::RadarCrossLineColor), ImGuiColorEditFlags_NoInputs);
 
 			float ProportionMin = 500.f, ProportionMax = 3300.f;
 			float RadarRangeMin = 100.f, RadarRangeMax = 300.f;
 			float RadarPointSizeProportionMin = 0.8f, RadarPointSizeProportionMax = 2.f;
-			Gui.SliderScalarEx1(u8"图标大小", ImGuiDataType_Float, &MenuConfig::RadarPointSizeProportion, &RadarPointSizeProportionMin, &RadarPointSizeProportionMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1(u8"比例尺", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1(u8"雷达大小", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
-		
+			Gui.SliderScalarEx1("PointSize", ImGuiDataType_Float, &MenuConfig::RadarPointSizeProportion, &RadarPointSizeProportionMin, &RadarPointSizeProportionMax, "%.1f", ImGuiSliderFlags_None);
+			Gui.SliderScalarEx1("Proportion", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
+			Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
+
 			ImGui::EndTabItem();
 		}
 
 		// TriggerBot
-		if (ImGui::BeginTabItem(u8"自动扳机 "))
+		if (ImGui::BeginTabItem("TriggerBot "))
 		{
-			Gui.MyCheckBox(u8"自动扳机*", &MenuConfig::TriggerBot);
+			Gui.MyCheckBox("TriggerBot", &MenuConfig::TriggerBot);
 
-			if (ImGui::Combo(u8"热键", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
+			if (ImGui::Combo("TriggerKey", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
 			{
 				TriggerBot::SetHotKey(MenuConfig::TriggerHotKey);
 			}
-			if (ImGui::Combo(u8"模式", &MenuConfig::TriggerMode, u8"按住\0切换"))
+			if (ImGui::Combo("TriggerMode", &MenuConfig::TriggerMode, "Hold\0Toggle"))
 			{
 				TriggerBot::SetMode(MenuConfig::TriggerMode);
 			}
 
-			DWORD TriggerDelayMin = 0, TriggerDelayMax = 250;
-			Gui.SliderScalarEx1(u8"延迟", ImGuiDataType_U32, &TriggerBot::TriggerDelay, &TriggerDelayMin, &TriggerDelayMax, "%d", ImGuiSliderFlags_None);
+			DWORD TriggerDelayMin = 15, TriggerDelayMax = 170;
+			Gui.SliderScalarEx1("Delay", ImGuiDataType_U32, &TriggerBot::TriggerDelay, &TriggerDelayMin, &TriggerDelayMax, "%d", ImGuiSliderFlags_None);
 
 			ImGui::EndTabItem();
 		}
 
-		if (ImGui::BeginTabItem(u8"其他 "))
+		if (ImGui::BeginTabItem("Misc "))
 		{
 			// moved to misc
-			Gui.MyCheckBox(u8"屏蔽闪光弹*", &MenuConfig::AntiFlashbang);
+			Gui.MyCheckBox("AntiFlashbang", &MenuConfig::AntiFlashbang);
 			// TeamCheck
-			Gui.MyCheckBox(u8"不透视队友", &MenuConfig::TeamCheck);
+			Gui.MyCheckBox("TeamCheck", &MenuConfig::TeamCheck);
 
+			ImGui::SameLine();
 			// OBS Bypass
-			Gui.MyCheckBox(u8"屏蔽录屏", &MenuConfig::OBSBypass);
+			Gui.MyCheckBox("OBSBypass", &MenuConfig::OBSBypass);
 
 			//Bunnyhopping
-			Gui.MyCheckBox(u8"连跳 ", &MenuConfig::BunnyHop);
+			Gui.MyCheckBox("Bunnyhop ", &MenuConfig::BunnyHop);
+			ImGui::SameLine();
 			//Gui.MyCheckBox("ShowWhenSpec", &MenuConfig::ShowWhenSpec);
 
 			ImGui::EndTabItem();
@@ -169,10 +171,10 @@ void Cheats::Menu()
 
 		// Render config saver
 		ConfigMenu::RenderConfigMenu();
-		
+
 		ImGui::Separator();
 
-		ImGui::Text(u8"[HOME] 隐藏显示，自瞄/自动扳机/屏蔽闪光 高风险功能不建议使用\n这软件是免费开源的如何你花钱了，说明你被骗了。\nhttps://github.com/Mzzzj/CS2_DMA_Extrnal");
+		ImGui::Text("[HOME] HideMenu");
 
 		ImGui::EndTabBar();
 	}ImGui::End();

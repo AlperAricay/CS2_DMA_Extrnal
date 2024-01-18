@@ -6,6 +6,11 @@
 #include <atlconv.h>
 #include <leechcore.h>
 #include <vmmdll.h>
+#include "structs.h"
+#include "../pch.h"
+#include "InputManager.h"
+#include "Registry.h"
+
 #define _is_invalid(v) if(v==NULL) return false
 #define _is_invalid(v,n) if(v==NULL) return n
 
@@ -44,6 +49,9 @@ class ProcessManager
 private:
 
 	bool   Attached = false;
+	//shared pointer
+	std::shared_ptr<c_keys> key;
+	c_registry registry;
 
 public:
 	std::string AttachProcessName;
@@ -125,6 +133,47 @@ public:
 		//GetExitCodeProcess(hProcess, &ExitCode);
 		return true;
 	}
+
+	DWORD GetPidFromName(std::string process_name)
+	{
+		DWORD pid = 0;
+		VMMDLL_PidGetFromName(this->HANDLE, (LPSTR)process_name.c_str(), &pid);
+		return pid;
+	}
+
+	std::vector<int> GetPidListFromName(std::string name)
+	{
+		PVMMDLL_PROCESS_INFORMATION process_info = NULL;
+		DWORD total_processes = 0;
+		std::vector<int> list = { };
+
+		if (!VMMDLL_ProcessGetInformationAll(this->HANDLE, &process_info, &total_processes))
+		{
+			LOG("[!] Failed to get process list\n");
+			return list;
+		}
+
+		for (size_t i = 0; i < total_processes; i++)
+		{
+			auto process = process_info[i];
+			if (strstr(process.szNameLong, name.c_str()))
+				list.push_back(process.dwPID);
+		}
+
+		return list;
+	}
+
+	/**
+	* @brief Gets the registry object
+	* @return registry class
+	*/
+	c_registry GetRegistry() { return registry; }
+
+	/**
+	* @brief Gets the key object
+	* @return key class
+	*/
+	c_keys* GetKeyboard() { return key.get(); }
 
 	/// <summary>
 	/// 读取进程内存
