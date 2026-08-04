@@ -9,4 +9,4 @@ This repository provides a DMA (Direct Memory Access) variant of CS2_External wi
 ## Java + H5 DMA Radar (single radar)
 See the single-radar version here: https://github.com/MoZiHao/CS2_DMA_Radar/tree/main
 
-Note: This fork fixes a crash that occurred in the original branch. No other third-party sponsor information is included.
+Note: This fork fixes a crash on Windows 10 systems. No third-party sponsor information is included.
